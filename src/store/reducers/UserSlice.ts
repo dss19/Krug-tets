@@ -1,5 +1,5 @@
-import { IUser } from '../../models/IUser';
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import IUser from "../../models/IUser";
 
 interface UserState {
     nextid: number;
@@ -52,17 +52,15 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         addUser(state = initialState, action: PayloadAction<IUser>) {
-            const newArr = [...state.users, action.payload];
-            state.users = newArr;
-            state.nextid = state.nextid + 1 
+            state.users = [...state.users, action.payload];
+            state.nextid = state.nextid + 1
         },
         deleteUser(state = initialState, action: PayloadAction<number>) {
             const user = state.users.findIndex((item) => item.id === action.payload);
-            const newArr = [
+            state.users = [
                 ...state.users.slice(0, user),
                 ...state.users.slice(user + 1)
             ];
-            state.users = newArr;            
         },
         usersFetching(state = initialState) {
             state.isLoading = true;
@@ -70,17 +68,14 @@ export const userSlice = createSlice({
         usersFetchingSuccess(state = initialState, action: PayloadAction<IUser[]>) {
             state.isLoading = false;
             state.error = '';
-            const newUsers = state.users.concat(action.payload);
-            state.users = newUsers;
+            state.users = state.users.concat(action.payload);
 
         },
         usersFetchingError(state = initialState, action: PayloadAction<string>) {
             state.isLoading = false;
             state.error = action.payload;
         }
-
     }
-    
 })
 
 export default userSlice.reducer;

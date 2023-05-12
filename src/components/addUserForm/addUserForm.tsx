@@ -1,8 +1,9 @@
-import { useState } from "react";
+import {FC, FormEvent, useState} from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { addUser, fetchUsers } from "../../store/reducers/ActionCreator";
+import { addUser } from "../../store/reducers/ActionCreator";
+import {LoadButton} from "../loadButton/loadButton";
 
-export default function AddUserForm() {
+export const AddUserForm: FC = () => {
 
     let { nextid } = useAppSelector(state => state.userReducer)
 
@@ -15,16 +16,11 @@ export default function AddUserForm() {
 
     const dispatch = useAppDispatch();
 
-    const onFormSubmit = (e) => {
+    const onFormSubmit = (e: FormEvent) => {
         e.preventDefault();
         dispatch(addUser(newUser));
-        document.userform.reset();
-    }
-
-    const onLoadUsers = () => {
-        dispatch(fetchUsers());
-        const btn = document.getElementById('load');
-        btn.classList.add('d-none'); 
+        const target = e.target as HTMLFormElement;
+        target.reset();
     }
 
     return (
@@ -49,7 +45,7 @@ export default function AddUserForm() {
                         onChange={(e) => setNewUser({ ...newUser, email: e.target.value, id: nextid })}/>
             </fieldset>            
             <button className="btn btn-primary w-100 mb-2" type="submit">Add user</button>
-            <button id="load" className="btn btn-success w-100" onClick={ onLoadUsers }>Load all users</button>
+            <LoadButton />
         </form>
     )
 }

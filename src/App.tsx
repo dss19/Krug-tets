@@ -1,16 +1,14 @@
-import UsersList from './components/usersList/usersList';
-import AddUserForm from './components/addUserForm/addUserForm';
+import {FC} from 'react';
 import './reset.css';
 import './App.css';
+import {UsersList} from "./components/usersList/usersList";
+import {AddUserForm} from "./components/addUserForm/addUserForm";
 
-function App() {
-
+export const App: FC = () => {
     return (
         <div className="App">
-            <UsersList />
+            <UsersList/>
             <AddUserForm />
         </div>
     );
 }
-
-export default App;

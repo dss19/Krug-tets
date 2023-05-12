@@ -1,14 +1,15 @@
-import CreateUser from "../createUser/createUser";
+import { User } from "../user/user";
 import { useAppSelector } from "../../hooks/redux";
+import {FC} from "react";
 
-export default function UsersList() { 
+export const UsersList: FC = () => {
     
-    const { isLoading, error } = useAppSelector(state => state.userReducer)
+    const { users, isLoading, error } = useAppSelector(state => state.userReducer)
 
     return (
         <ul className="users--list">
             <h1>Users</h1>
-            <CreateUser />
+            {users.map((item) => <User key={ item.id } user={item}/>)}
             {isLoading && <h5 className="mt-2">Loading</h5>}
             {error && <h5 className="mt-2">{error}</h5>}
         </ul>        
