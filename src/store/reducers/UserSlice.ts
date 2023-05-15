@@ -68,9 +68,11 @@ export const userSlice = createSlice({
         usersFetchingSuccess(state = initialState, action: PayloadAction<IUser[]>) {
             state.isLoading = false;
             state.error = '';
-            state.users = state.users.concat(action.payload)
-
-            console.log(state.users)
+            state.users = [...state.users, ...action.payload].reduce((acc: IUser[], currItem) => {
+                if (acc.every(item => !(item.id === currItem.id)))
+                    acc.push(currItem)
+                return acc
+            }, []);
         },
         usersFetchingError(state = initialState, action: PayloadAction<string>) {
             state.isLoading = false;
