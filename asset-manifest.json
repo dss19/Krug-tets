@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Krug-tets/static/css/main.9c477b98.css",
+    "main.js": "/Krug-tets/static/js/main.1239a63b.js",
+    "index.html": "/Krug-tets/index.html",
+    "main.9c477b98.css.map": "/Krug-tets/static/css/main.9c477b98.css.map",
+    "main.1239a63b.js.map": "/Krug-tets/static/js/main.1239a63b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9c477b98.css",
+    "static/js/main.1239a63b.js"
+  ]
+}
