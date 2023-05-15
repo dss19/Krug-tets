@@ -8,7 +8,7 @@ export const LoadButton: FC = () => {
 
     return (
         <div>
-            <button id="load" className="btn btn-success w-100"
+            <button type="button" className="btn btn-success w-100"
                     onClick={ () => dispatch(fetchUsers()) }>Load all users</button>
         </div>
     );
